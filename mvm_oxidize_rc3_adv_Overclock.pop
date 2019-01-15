@@ -1,6 +1,4 @@
-#base robot_giant_addicted.pop
-#base robot_standard_addicted.pop
-#base robot_canteen_remilia.pop
+#base robot_Remilia_Addicted_Madness.pop
 population
 {
 	StartingCurrency	1500
@@ -198,7 +196,7 @@ population
 			{
 				Template	T_TFBot_Giant_Demoman
 				Attributes AlwaysCrit
-				ClassIcon demo
+				ClassIcon	Demo
 			}
 		}
 		WaveSpawn
@@ -331,7 +329,6 @@ population
 			TFBot
 			{
 				Template	T_TFBot_heavy_heal_on_kill_tanker
-				ClassIcon	heavy_healonkill
 			}
 		}
 		WaveSpawn
@@ -384,7 +381,7 @@ population
 					Health	1000
 					Name	"Armored Quick-Fix Medic"
 					Item "The Quick-Fix"
-					ClassIcon medic
+					ClassIcon medic_armored
 					Skill	Easy
 					Scale	1.4
 					ItemAttributes
@@ -404,7 +401,7 @@ population
 					Health	1000
 					Name	"Armored Quick-Fix Medic"
 					Item "The Quick-Fix"
-					ClassIcon medic
+					ClassIcon medic_armored
 					Skill	Easy
 					Scale	1.4
 					ItemAttributes
@@ -443,7 +440,7 @@ population
 			WaitForAllDead	2B
 			TotalCurrency	100
 			TotalCount	3
-			MaxActive	3
+			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	19
@@ -454,7 +451,7 @@ population
 				Name	"Giant Rapid Fire Backup Soldier"
 				ItemAttributes
 				{
-					ItemName "TF_WEAPON_ROCKETLAUNCHER"
+					ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
 					"faster reload rate" -0.8
 					"fire rate bonus" 0.5
 				}
@@ -569,6 +566,7 @@ population
 				ClassIcon heavy_heateR
 				Skill Expert
 				Health 5500
+				Scale	1.8
 				Attributes	MiniBoss
 				WeaponRestrictions PrimaryOnly
 				Item "The Huo Long Heatmaker"
@@ -606,6 +604,7 @@ population
 				ClassIcon heavy_heateR
 				Skill Expert
 				Health 5500
+				Scale	1.8
 				Attributes	MiniBoss
 				WeaponRestrictions PrimaryOnly
 				Item "The Huo Long Heatmaker"
@@ -643,6 +642,7 @@ population
 				ClassIcon heavy_heateR
 				Skill Expert
 				Health 5500
+				Scale	1.8
 				Attributes	MiniBoss
 				WeaponRestrictions PrimaryOnly
 				Item "The Huo Long Heatmaker"
@@ -1005,12 +1005,10 @@ population
 				TFBot
 				{
 					Template	T_TFBot_Giant_Medic_Regen
-					ClassIcon	Medic
 				}
 				TFBot
 				{
 					Template	T_TFBot_Giant_Medic_Regen
-					ClassIcon	Medic
 				}
 			}
 		}
@@ -1075,7 +1073,6 @@ population
 			{
 				Template	T_TFBot_heal_on_hit_dragon
 				Skill	Hard
-				ClassIcon	pyro_dragon_fury_swordstone
 			}
 		}
 	}
@@ -1111,7 +1108,7 @@ population
 				Class	Soldier
 				Name	"Rapid Fire Buff Soldier"
 				Item	"The Buff Banner"
-				ClassIcon	soldier_buff
+				ClassIcon	soldier_buff_spammer
 				Attributes SpawnWithFullCharge
 				Item "The Buff Banner"
 				Skill	Normal
@@ -1141,7 +1138,7 @@ population
 				Class	Sniper
 				Name	"Hyped Crocodile Slayer"
 				Health	450
-				ClassIcon	sniper_bushwacka
+				ClassIcon	sniper_bush_armored
 				Item	"The Bushwacka"
 				Scale	1.3
 				Skill	Expert
@@ -1200,7 +1197,7 @@ population
 				{
 					Class	Demoman
 					Name	"Mad Bomber"
-					ClassIcon	demo_burst
+					ClassIcon	demoman_nuker
 					Health	4200
 					Scale	1.7
 					Item	"The Bolgan"
@@ -1357,7 +1354,7 @@ population
 			{
 				Class	Soldier
 				Name	"Armored Buff Box Soldier"
-				ClassIcon	soldier_blackbox
+				ClassIcon	soldier_blackbox_armored_buff
 				Health	1200
 				Item "The Black Box"
 				WeaponRestrictions PrimaryOnly
@@ -1426,10 +1423,23 @@ population
 			MaxActive	16
 			Where	flankers
 			WaitBetweenSpawns	5
-			TFBot
+			RandomChoice
 			{
-				Class	Soldier
-				Attributes	AlwaysCrit
+				TFBot
+				{
+					Class	Soldier
+					Attributes	AlwaysCrit
+				}
+				TFBot
+				{
+					Class	Soldier
+					ClassIcon	SoLdIer
+				}
+				TFBot
+				{
+					Class	Soldier
+					ClassIcon	SoLdIer
+				}
 			}
 		}
 		WaveSpawn
@@ -1449,6 +1459,7 @@ population
 					Class	Heavy
 					Name	"Super Ice Burner Heavy"
 					ClassIcon heavy_heateR
+					Scale	1.8
 					Skill Expert
 					Health 5500
 					Attributes	MiniBoss
