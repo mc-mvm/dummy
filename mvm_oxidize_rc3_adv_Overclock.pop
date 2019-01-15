@@ -329,6 +329,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_heavy_heal_on_kill_tanker
+				ClassIcon	Heavy_healonkill
 			}
 		}
 		WaveSpawn
@@ -381,7 +382,7 @@ population
 					Health	1000
 					Name	"Armored Quick-Fix Medic"
 					Item "The Quick-Fix"
-					ClassIcon medic_armored
+					ClassIcon medic
 					Skill	Easy
 					Scale	1.4
 					ItemAttributes
@@ -401,7 +402,7 @@ population
 					Health	1000
 					Name	"Armored Quick-Fix Medic"
 					Item "The Quick-Fix"
-					ClassIcon medic_armored
+					ClassIcon medic
 					Skill	Easy
 					Scale	1.4
 					ItemAttributes
@@ -1138,7 +1139,7 @@ population
 				Class	Sniper
 				Name	"Hyped Crocodile Slayer"
 				Health	450
-				ClassIcon	sniper_bush_armored
+				ClassIcon	sniper_bush
 				Item	"The Bushwacka"
 				Scale	1.3
 				Skill	Expert
@@ -1197,7 +1198,7 @@ population
 				{
 					Class	Demoman
 					Name	"Mad Bomber"
-					ClassIcon	demoman_nuker
+					ClassIcon	demoman_scatter
 					Health	4200
 					Scale	1.7
 					Item	"The Bolgan"
@@ -1354,7 +1355,7 @@ population
 			{
 				Class	Soldier
 				Name	"Armored Buff Box Soldier"
-				ClassIcon	soldier_blackbox_armored_buff
+				ClassIcon	soldier_blackbox
 				Health	1200
 				Item "The Black Box"
 				WeaponRestrictions PrimaryOnly
