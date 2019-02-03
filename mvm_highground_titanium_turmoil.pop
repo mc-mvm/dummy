@@ -1,0 +1,2367 @@
+#base robot_giant.pop
+#base robot_standard.pop
+// titanium turmoil or titanium turbulence idk
+
+//7 waves total?
+
+WaveSchedule
+{
+
+
+	// initial game states and stuff
+
+	StartingCurrency 800
+	RespawnWaveTime 6
+	CanBotsAttackWhileInSpawnRoom no
+	Advanced 1
+	
+	//YES I DID THIS ON PURPOSE
+	Templates
+	{
+		T_TFBot_Soldier_Rocket_Jumper
+		{
+			Name "Dangerous Robot"
+			Class Soldier
+			Skill Hard
+			//Item "The Rocket Jumper"
+			Item "Rocket Jumper"
+
+			WeaponRestrictions PrimaryOnly
+			
+
+		}
+		
+		T_TFBot_Sniper_Huntsman_Spammer_Mini
+		{
+			Name "Bowman Rapid Fire Jr."
+			Class Sniper
+			Skill Hard
+			Health 250
+			//Scale 1.5
+			ClassIcon sniper_bow
+			Item "The Huntsman"
+			ItemAttributes
+			{
+				ItemName "The Huntsman"
+				"fire rate bonus" 0.6
+			}
+			CharacterAttributes
+			{
+				"head scale" 0.7
+				"move speed bonus" 0.85
+			}
+		}
+
+	}
+
+
+
+			//Health 40000
+			//Scale 1.9
+			//ClassIcon soldier_sergeant_crits
+			//Attributes MiniBoss
+			//Attributes UseBossHealthBar
+
+
+
+	//SENTRY BUSTERS
+	Mission
+	{
+		Objective DestroySentries
+		InitialCooldown 20
+		//Where spawnbot_mission_sentry_buster
+		//that spawnpoint is not on this map
+		Where spawnbot
+		BeginAtWave 1
+		RunForThisManyWaves 7
+		CooldownTime 30
+		DesiredCount 1
+		TFBot
+		{
+			Template T_TFBot_SentryBuster
+		}
+		
+	}
+
+
+	//SNIPERS
+	Mission
+	{
+		Objective Sniper
+		InitialCooldown 120
+		Where spawnbot_mission_sniper
+		BeginAtWave 1
+		RunForThisManyWaves 1
+		CooldownTime 120
+		DesiredCount 1
+		TFBot
+		{
+			Template T_TFBot_Sniper_Sydney_Sleeper
+			Skill Hard
+			CharacterAttributes
+			{
+				"damage bonus" 1.0
+			}
+		}
+	}
+
+	Mission
+	{
+		Objective Sniper
+		InitialCooldown 60
+		Where spawnbot_mission_sniper
+		BeginAtWave 2
+		RunForThisManyWaves 5
+		CooldownTime 30
+		DesiredCount 1
+		TFBot
+		{
+			Template T_TFBot_Sniper
+			Skill Hard
+			CharacterAttributes
+			{
+				"damage bonus" 1.0
+			}
+		}
+	}
+
+	Mission
+	{
+		Objective Sniper
+		InitialCooldown 60
+		Where spawnbot_mission_sniper
+		BeginAtWave 7
+		RunForThisManyWaves 1
+		CooldownTime 60
+		DesiredCount 2
+		TFBot
+		{
+			Template T_TFBot_Sniper
+			Skill Expert
+			CharacterAttributes
+			{
+				"damage bonus" 1.0
+			}
+		}
+	}
+		
+	//END OF SNIPERS
+
+	//BEGINNING OF SPIES
+	Mission
+	{
+		Objective Spy
+		InitialCooldown 40
+		Where spawnbot_mission_spy
+		BeginAtWave 4
+		RunForThisManyWaves 3
+		CooldownTime 70
+		DesiredCount 1
+		TFBot
+		{
+			Name Spy
+			Scale 0.1
+			Class Spy
+			//Skill Hard
+		}
+	}
+
+	Mission
+	{
+		Objective Spy
+		InitialCooldown 15
+		Where spawnbot_mission_spy
+		BeginAtWave 7
+		RunForThisManyWaves 1
+		CooldownTime 60
+		DesiredCount 3
+		TFBot
+		{
+			Name Spy
+			Class Spy
+			Skill Expert
+		}
+	}
+
+	//END OF SPIES
+
+	Mission
+	{
+		
+		Objective Engineer
+	
+		Where spawnbot
+	
+		BeginAtWave 6
+		RunForThisManyWaves 2	
+		InitialCooldown	40
+		
+		CooldownTime	60
+		
+		DesiredCount	1	
+		TFBot
+		
+		{
+			
+			Template	T_TFBot_Engineer_Sentry_Teleporter
+		
+		}
+	
+	}
+	//END OF ENGINEAR
+
+	//WAVE 1
+	Wave 
+	{
+		StartWaveOutput
+			{
+				Target wave_start_relay_classic
+				Action Trigger
+			}
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action trigger
+		}
+
+		Checkpoint Yes
+
+
+		//WAVE 1A
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1a"
+			TotalCount 24
+			MaxActive 18
+			SpawnCount 6
+			WaitBetweenSpawns 6
+			TotalCurrency 150
+			TFBot
+			{
+				ClassIcon soldier_major_crits
+				Class Scout
+				Skill Normal
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1a"
+			TotalCount 5
+			MaxActive 1
+			//SpawnCount 6
+			//THIS BABHY RIGHT HERE IS WHAT CAUSED THE FIRST WAVE TO FUCK UP. NEVER SPAWN MORE BOTS THEN THE TOTAL COUNT Active
+			SpawnCount 1
+			WaitBetweenSpawns 6
+			TotalCurrency 10
+			TFBot
+			{
+				Template T_TFBot_Scout_Wrap_Assassin
+				
+				Attributes AlwaysCrit
+				ClassIcon soldier_major_crits
+				Skill Normal
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 6
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier
+				
+				ClassIcon soldier_major_crits
+				Scale 1
+				Health 600
+			}
+		}
+		
+		//WAVE 1B
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1b"
+			TotalCount 15
+			MaxActive 5
+			SpawnCount 5
+			WaitForAllSpawned "wave1a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 130
+			TFBot
+			{
+				Class Soldier
+				Skill Easy
+				
+				ClassIcon soldier_major_crits
+			}
+		}
+				
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1b"
+			TotalCount 10
+			MaxActive 5
+			SpawnCount 5
+			//WaitForAllSpawned "wave1ab"
+			WaitForAllSpawned "wave1a"
+
+			WaitBeforeStarting 30
+			WaitBetweenSpawns 6
+			TotalCurrency 10
+			TFBot
+			{
+				Class Soldier
+				
+				ClassIcon soldier_major_crits
+				Skill Easy
+				Item "The Equalizer"
+				Item "The Team Captain"
+				WeaponRestrictions MeleeOnly
+				CharacterAttributes
+				{
+					"head scale" 0.7
+					"move speed bonus" 1.15
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave1b"
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 4
+			WaitForAllSpawned "wave1a"
+			//WaitBeforeStarting 105
+			WaitBeforeStarting 30
+
+			TotalCurrency 200
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Soldier
+					ClassIcon soldier_major_crits
+					Health 1000
+					Scale 1
+					//Template T_TFBot_Giant_Soldier_Spammer
+
+				}
+
+				TFBot
+				{
+					Template T_TFBot_Medic
+					
+					ClassIcon soldier_major_crits
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic
+					
+					ClassIcon soldier_major_crits
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic
+					
+					ClassIcon soldier_major_crits
+				}
+			}
+		}
+		// total moneys 500
+	
+		//WAVE 1C
+		WaveSpawn
+		{
+			Where spawnbot_mission_spy
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitForAllSpawned "wave1b"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 21
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier
+					
+				ClassIcon soldier_major_crits
+				Health 1400
+				Scale 1
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 12
+			MaxActive 6
+			SpawnCount 3
+			WaitForAllSpawned "wave1b"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 40
+			RandomChoice
+			{
+
+				TFBot
+				{
+					Class Demoman
+					Skill Normal
+					
+					ClassIcon soldier_major_crits
+				}
+				TFBot
+				{
+					Template T_TFBot_Soldier_Extended_Buff_Banner
+					
+					ClassIcon soldier_major_crits
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 3
+			MaxActive 3
+			SpawnCount 3
+			WaitForAllSpawned "wave1b"
+			WaitBeforeStarting 20
+			TotalCurrency 61
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Demo_RapidFire
+					//Health 2001
+					
+					ClassIcon soldier_major_crits
+					Scale 1
+				}
+				TFBot
+				{
+					Template T_TFBot_Giant_Soldier
+					Scale 1
+					Health 420
+					
+					ClassIcon soldier_major_crits
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic
+					
+					ClassIcon soldier_major_crits
+				}
+				//removed 3 medics and one giant medic
+			}
+				//Attributes AlwaysCrit
+		}
+
+
+	}
+	//end of wave 1
+	Wave
+	{
+		StartWaveOutput
+			{
+				Target wave_start_relay
+				Action Trigger
+			}
+		DoneOutput					
+			{
+				Target wave_finished_relay
+				Action trigger
+			}
+
+		WaveSpawn 
+		{
+			Where spawnbot
+			//TotalCount 42
+			TotalCount 20
+
+			MaxActive 10
+			SpawnCount 2
+			WaitBeforeStarting 11
+			WaitBetweenSpawns 20
+			TotalCurrency 100
+			//Support 1
+			TFBot
+			{
+				Class Scout
+				Skill Expert	
+				WeaponRestrictions MeleeOnly
+				Item "The Holy Mackerel"
+				Attributes AlwaysCrit
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave2a"
+			TotalCount 5
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 14
+			TotalCurrency 3
+			TFBot
+			{
+				Class Soldier
+				Skill Easy
+				Attributes AlwaysCrit
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave2a"
+			TotalCount 20
+			MaxActive 20
+			SpawnCount 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 97
+			TFBot
+			{
+				Class Soldier
+				Skill Easy
+				//Attributes AlwaysCrit
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+
+			Name "wave2a"
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 20
+			//WaitBetweenSpawns 50
+			TotalCurrency 100
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Pyro
+					Attributes AlwaysFireWeapon
+					Health 1500
+					Scale 1
+					Item "Traffic Cone"
+					Item "Pop-Eyes"
+
+				}
+				TFBot
+				{
+					Template T_TFBot_ScorchShot_FastShot
+					Attributes AlwaysFireWeapon
+					Item "The Metal Slug"
+				}
+				TFBot
+				{
+					Template T_TFBot_ScorchShot_FastShot
+					Attributes AlwaysFireWeapon
+					Item "A Rather Festive Tree"
+				}
+				TFBot
+				{
+					Template T_TFBot_Giant_Boxing_Heavy
+					//Health 4000
+					Scale 1
+					Attributes AlwaysFireWeapon
+					Item "Football Helmet"
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Item "Prussian Pickelhaube"
+				}
+			}
+		}
+				
+		WaveSpawn
+		{
+			Name "wave2b"
+			Where spawnbot
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 10
+			WaitBeforeStarting 0
+			//WaitBetweenSpawns 42
+			TotalCurrency 100
+
+			WaitForAllSpawned "wave2a"
+			Squad
+			{
+				TFBot
+				{
+					Name "Random Crits"
+					Class Medic
+					Skill Expert
+					Health 3400
+					ClassIcon medic_giant
+					Item "The Crusader's Crossbow"
+					Item "Berliner's Bucket Helm"
+					Attributes MiniBoss
+					Scale 1
+					MaxVisionRange 2500
+					WeaponRestrictions PrimaryOnly
+					Attributes AlwaysCrit
+
+					ItemAttributes
+					{
+						ItemName "The Crusader's Crossbow"
+						"fire rate bonus" 0.4
+					}
+					
+					CharacterAttributes
+					{
+	
+						"damage force reduction" 0.6
+						"health regen" 40
+						"move speed bonus" 0.5
+					}
+				}
+				TFBot
+				{
+					Template T_TFBot_Giant_Medic_Regen
+					Health 1900
+					Scale 1
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+					Name "Pocket Medic"
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+					Name "Pocket Medic"
+
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_BigHeal
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave2b"
+			TotalCount 6
+			MaxActive 3
+			SpawnCount 3
+			WaitForAllSpawned "wave2a"
+			WaitBeforeStarting 40 
+			WaitBetweenSpawns 20
+			TotalCurrency 200
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFbot_Heavyweapons_Heater
+					Health 3200
+					//Scale 3.7
+					//if scale is this big, he wont fit through gate.
+					//Scale 2.9
+					//everyone is small now
+					Scale 1
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Tag bot_squad_member
+				}
+				//I REMOVED 2 QUICK UBER MEDICS FROM HERE.
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 5
+			MaxActive 5
+			WaitForAllSpawned "wave2a"
+			SpawnCount 1
+			WaitBeforeStarting 3
+			
+			WaitBetweenSpawns 20
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier
+				Health 2000
+				Scale 1
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 25
+			MaxActive 5
+			WaitForAllSpawned "wave2a"
+			SpawnCount 5
+			WaitBeforeStarting 3
+			
+			WaitBetweenSpawns 1
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier
+				Item "Rocket Jumper"
+				Health 2000
+				Scale 1
+				WeaponRestrictions PrimaryOnly
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 10
+			MaxActive 4
+			WaitForAllSpawned "wave2a"
+			SpawnCount 2
+			WaitBeforeStarting 3
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman_Spammer_Mini
+
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 6
+			MaxActive 2
+			WaitForAllSpawned "wave2a"
+			SpawnCount 1
+			WaitBeforeStarting 10
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman_Spammer
+				Name "Wanker"
+				Scale 1
+
+			}
+		}
+
+
+
+	}
+	//END OF WAVE 2
+	
+	Wave
+	{
+		StartWaveOutput
+		{
+				Target wave_start_relay
+				Action Trigger
+		}
+		DoneOutput					
+			{
+				Target wave_finished_relay
+				Action trigger
+			}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 3
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			Support 1
+
+				TFBot
+				{
+					Class Pyro
+					Name "Guys, My mouse is broken"
+					Skill Expert
+					Attributes AlwaysFireWeapon
+					Item "Pop-eyes"
+					Item "Ghastly Gibus"
+				}
+
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave3a"
+			TotalCount 8
+			MaxActive 8
+			SpawnCount 4
+			WaitBeforeStarting 1
+			WaitBetweenSpawns 9
+			TotalCurrency 100
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Heavyweapons_Shotgun
+					Name "Fat Scout"
+					Scale 1
+					//Health 2000
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Item "The Team Captain"
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Tag bot_squad_member
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Tag bot_squad_member
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave3a"
+			TotalCount 5
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Demo_RapidFire
+				Scale 1
+				Item "The Scrumpy Strongbox"
+				//Health 1400
+			}
+		}
+		WaveSpawn 
+		{
+			Name "wave03b"
+			TotalCount 2
+			WaitForAllSpawned "wave3a"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 20
+			TotalCurrency 100
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 2468
+				Speed 50
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave03b"
+			TotalCount 8
+			MaxActive 4
+			SpawnCount 2
+			//WaitForAllDead "wave03a"
+			//made a typo here
+
+			WaitForAllSpawned "wave3a"
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 20
+			TotalCurrency 100
+			Squad
+			{
+				TFBot
+				{
+					Class Heavyweapons
+					Scale 0.7
+					Skill Expert
+					Health  600
+					Attributes AlwaysCrit
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+				}
+			}
+		}
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 10
+			WaitForAllSpawned "wave03b"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 8
+			TotalCurrency 200
+			
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman_Spammer_Mini
+				//Health 162
+
+			}
+		}
+		
+		
+	}
+	//eND OF WAVE 3
+
+
+	//START OF WAVE 4
+	Wave
+	{
+		Checkpoint Yes
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 40
+			MaxActive 10
+			SpawnCount 10
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 200
+			TFBot
+			{
+				Class Soldier
+				Skill Hard
+				Item "The Escape Plan"
+				Scale 0.9
+				Item "The Doe-Boy"
+				WeaponRestrictions MeleeOnly
+				Attributes AlwaysCrit
+				CharacterAttributes
+				{
+					"move speed bonus" 3
+				}
+			}
+		}
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 8
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_Sniper_Huntsman_Spammer_Mini
+				}
+		}
+		
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 22
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 95
+			
+			TFBot
+			{
+				Class Demoman
+				//Item "The FR-0"
+			}
+		}
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 3
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 5
+			
+			TFBot
+			{
+				Template T_TFBot_Demo_Burst
+				Item "The FR-0"
+			}
+		}
+		
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 3
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 5
+			TotalCurrency 100
+			
+			TFBot
+			{
+				Template T_TFBot_Demo_Burst
+				Health 500
+				Item "Reggaelator"
+			}
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave4b"
+			TotalCount 20
+			MaxActive 10
+			SpawnCount 5
+			WaitForAllSpawned "wave4a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			//RandomSpawn 1
+			Squad
+			{	
+				TFBot
+				{
+					Template T_TFBot_Giant_Pyro
+					Attributes AlwaysFireWeapon
+					//Health 700
+					Scale 1
+					Item "Ghostly Gibus"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 400
+					//Scale 1
+					Item "Ghostly Gibus"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 700
+					//Scale 1
+					Item "Ghastly Gibus"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 500
+					//Scale 1
+					Item "Madame Dixie"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 600
+					//Scale 1
+					Item "Respectless Robo-Glove"
+					Item "Pop-eyes"
+
+				}
+			}
+
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave4b"
+			TotalCount 5
+			MaxActive 5
+			SpawnCount 1
+			WaitForAllSpawned "wave4a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 24
+			//Scale 1.5
+			TotalCurrency 100
+			RandomSpawn 1
+			TFBot
+			{
+				Template T_TFBot_Giant_Pyro
+				Name "Pyros after Jungle Inferno"
+
+				Attributes AlwaysFireWeapon
+				//Health 2800
+				//Scale 1.5
+				Scale 1
+
+				Attributes AlwaysCrit
+				Item "The Rusty Reaper"
+				//Item "Pop-eyes"
+
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 10
+			MaxActive 10
+			SpawnCount 2
+			WaitForAllSpawned "wave4b"
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			TFBot
+			{
+				Class Soldier				
+				Attributes AlwaysCrit
+				Skill Easy
+				Health 400
+				CharacterAttributes
+				{
+					"move speed bonus" 2.05
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitForAllSpawned "wave4b"
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 20
+			TotalCurrency 113
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Soldier_Spammer
+					Scale 1
+					//Health 2000
+				}
+				TFBot
+				{
+					Template T_TFBot_Medic_QuickUber
+					Item "The Team Captain"
+
+				}
+			}
+		}
+
+
+	}
+	//END OF WAVE 4
+	//START OF WAVE 5
+	Wave
+	{
+		Checkpoint Yes
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 10
+			WaitBetweenSpawns 5
+			TotalCurrency 100
+			//Support 1
+
+				TFBot
+				{
+					Class Pyro
+					//Skill Expert
+					ClassIcon soldier
+					Item "The Scorch Shot"
+					Name "Hot singles in your area"
+					Attributes AlwaysFireWeapon
+					WeaponRestrictions SecondaryOnly
+					Health 400
+					Item "Ghostly Gibus"
+					ItemAttributes
+					{
+						ItemName "The Scorch Shot"
+						"damage causes airblast" 1
+						"fire rate bonus" 0.4
+					}
+
+				}
+
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave4a"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 10
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 100
+			TFBot
+			{
+				Class Soldier
+				Skill Hard
+				Name "OH CRIT, THEY ARE ALL OVER ME"
+				Attributes AlwaysCrit
+				Item "The Equalizer"
+				ClassIcon sniper_bow
+				Scale 0.9
+				Health 800
+				WeaponRestrictions MeleeOnly
+				CharacterAttributes
+				{
+					"move speed bonus" 2
+				}
+			}
+		}
+
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave5a"
+			TotalCount 3
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 7
+			WaitBetweenSpawns 10
+			TotalCurrency 133
+			
+			TFBot
+			{
+				Template T_TFBot_Demo_Burst
+				Item "Horace"
+			}
+		}
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave5a"
+			TotalCount 3
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 102
+			
+			TFBot
+			{
+				Template T_TFBot_Demo_Burst
+				Item "Max's Head"
+			}
+		}
+				
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave5a"
+			TotalCount 22
+			MaxActive 5
+			SpawnCount 5
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 10
+			
+			TFBot
+			{
+				Class scout
+				ClassIcon demo
+				WeaponRestrictions MeleeOnly
+			}
+		}
+		
+		WaveSpawn 
+		{
+			
+			Where spawnbot
+			Name "wave5a"
+			TotalCount 6
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 10
+			
+			TFBot
+			{
+				Class scout
+				ClassIcon demo_burst
+				WeaponRestrictions MeleeOnly
+				Health 300
+				Attributes AlwaysCrit
+				CharacterAttributes
+				{	
+					"move speed bonus" 1.7
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave5b"
+			TotalCount 20
+			MaxActive 10
+			SpawnCount 2
+			WaitForAllSpawned "wave5a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 10
+			TotalCurrency 111
+			//RandomSpawn 1
+
+			Squad
+			{	
+				TFBot
+				{
+					Template T_TFBot_Giant_Pyro
+					Attributes AlwaysFireWeapon
+					Name "Average Pyro Player"
+					//Health 700
+					Scale 1
+					Item "Traffic Cone"
+					Item "Pop-eyes"
+					
+					ClassIcon soldier
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 400
+					Name "Average Pyro Player"
+
+					ClassIcon soldier
+					//Scale 1
+					Item "Ghostly Gibus"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 700
+					//Scale 1
+					Name "Average Pyro Player"
+
+					ClassIcon soldier
+					Item "Pyro's Boron Beanie"
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 500
+					//Scale 1
+					Item "Madame Dixie"
+					Name "Average Pyro Player"
+
+					ClassIcon soldier
+					Item "Pop-eyes"
+
+				}
+				TFBot
+				{
+					Class Pyro
+					Attributes AlwaysFireWeapon
+					Health 600
+					Name "Average Pyro Player"
+
+					
+					ClassIcon soldier
+					//Scale 1
+					Item "Respectless Robo-Glove"
+					Item "Pop-eyes"
+
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave5b"
+			TotalCount 4
+			MaxActive 2
+			SpawnCount 1
+			WaitForAllSpawned "wave5a"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 10
+			TotalCurrency 133
+			RandomSpawn 1
+			TFBot
+			{
+				Template T_TFBot_Giant_Pyro
+				//Health 300
+				Item "The Manmelter"
+				//Attributes AlwaysFireWeapon
+				WeaponRestrictions SecondaryOnly
+				Scale 1
+				ClassIcon soldier
+				Attributes AlwaysCrit
+				Item "Ghostly Gibus"
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitForAllSpawned "wave5b"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 51
+			TFBot
+			{
+				
+				Class Heavyweapons
+				WeaponRestrictions MeleeOnly
+				Skill Hard
+				ClassIcon medic_uber
+				Item "Ghostly Gibus"
+				Health 1000
+				Attributes AlwaysCrit
+				CharacterAttributes
+				{
+					"move speed bonus" 5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 2
+			WaitForAllSpawned "wave5b"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 50
+			TFBot
+			{
+				
+				Class Heavyweapons
+				WeaponRestrictions MeleeOnly
+				Skill Hard
+				ClassIcon soldier_spammer	
+				Item "Ghostly Gibus"
+				Health 1200
+				Attributes AlwaysCrit
+				CharacterAttributes
+				{
+					"move speed bonus" 4
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 25
+			MaxActive 5
+			Name "Soundcard Squad Member"
+			SpawnCount 5
+			WaitForAllSpawned "wave5b"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 6
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Soldier_Rocket_Jumper
+				ClassIcon pyro
+				Health 600
+				Attributes AlwaysCrit
+				CharacterAttributes
+				{
+					"move speed bonus" 4
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			//Health 10000
+			//HEALTH DOESNT GO HERE
+			WaitForAllSpawned "wave5b"
+			WaitBeforeStarting 20
+			//WaitBetweenSpawns 0
+			TotalCurrency 50
+			TFBot
+			{
+				Class Soldier
+				Health 4000
+				ClassIcon pyro
+				Attributes AlwaysCrit
+				Skill Hard
+				CharacterAttributes
+				{
+					"move speed bonus" 1.01
+				}
+			}
+		}
+
+	}
+	//END OF WAVE 5
+	//START OF WAVE 6
+	Wave
+	{
+		Checkpoint Yes
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action trigger
+		}
+		
+		WaveSpawn 
+		{
+			Name "wave03b"
+			//TotalCount 2
+			//WaitForAllSpawned "wave3a"
+			WaitBeforeStarting 50
+			//WaitBetweenSpawns 55
+			TotalCurrency 100
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 1999
+				Speed 600
+				//2 fast 2 furious
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+		
+
+			Name "wave6a"
+			TotalCount 20
+			MaxActive 10
+			//MaxActive 10
+			SpawnCount 5
+			WaitBetweenSpawns 10
+			TotalCurrency 203
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Scout
+					Name "Giant Baby Man"
+					Item "Ghostly Gibus"
+					Scale 1
+					Health 1000
+				}
+				TFBot
+				{
+					Template T_TFBot_Giant_Scout
+					Name "Giant Baby Man"
+					Item "The Fan O'War"
+					WeaponRestrictions MeleeOnly
+					Scale 1
+					Health 1100
+				}
+				TFBot
+				{
+					Class Scout
+					//Name "Giant Baby Man"
+					Item "Gold Frying Pan"
+					WeaponRestrictions MeleeOnly
+					Scale 1
+					Health 1100
+				}
+				TFBot
+				{
+					Class Scout
+					//Name "Giant Baby Man"
+					Item "Gold Frying Pan"
+					Attributes AlwaysCrit
+					WeaponRestrictions MeleeOnly
+					Scale 1
+					Health 1100
+					CharacterAttributes
+					{
+						"move speed bonus" 2
+						"cannot pick up intelligence" 1
+					}
+				}
+				TFBot
+				{
+					Class Scout
+					//Name "Giant Baby Man"
+					Item "Frying Pan"
+					Attributes AlwaysCrit
+					WeaponRestrictions MeleeOnly
+					Scale 1
+					Health 1100
+					CharacterAttributes
+					{
+						"move speed bonus" 2
+						"cannot pick up intelligence" 1
+					}
+				}
+				TFBot
+				{
+						Name "I showed u my balls,pls respond"
+						Class Scout
+						Skill Expert
+						Health 800
+						Item "The Sandman"
+						WeaponRestrictions MeleeOnly
+						Skill Expert
+					
+						//Attributes AlwaysCrit
+						ItemAttributes
+						{
+							ItemName "The Sandman"
+							"effect bar recharge rate increased" 0.01
+						}
+					
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+		
+
+			
+			Name "wave6b"
+			WaitForAllSpawned "wave6a"
+		
+			TotalCount 9
+			MaxActive 6
+			SpawnCount 3
+			WaitBetweenSpawns 6
+			TotalCurrency 100
+			Squad
+			{
+				TFBot
+				{
+					Template T_TFBot_Giant_Scout
+					Name "Giant Baby Man"
+				
+					WeaponRestrictions MeleeOnly
+					Item "Ghostly Gibus"
+					Scale 1
+					Health 1020
+				}
+				
+				TFBot
+				{
+					Template T_TFBot_Giant_Scout_Fast
+					Name "He seems Fishy"
+				
+					//WeaponRestrictions MeleeOnly
+					Item "The Cockfighter"
+					Scale 1
+					Health 1020
+				}
+				TFBot
+				{
+					Name "I showed u my balls,pls answer"
+					Class Scout
+					Skill Expert
+					Health 1300
+					//ClassIcon scout_giant
+					//Item "Scout Beanie"
+					//Item "Summer Shades"
+					//Item "The Boston Boom-Bringer"
+					Item "The Sandman"
+					//Attributes MiniBoss
+					//Attributes UseBossHealthBar
+					WeaponRestrictions MeleeOnly
+					Skill Expert
+					
+					Attributes AlwaysCrit
+					ItemAttributes
+					{
+						ItemName "The Sandman"
+						"effect bar recharge rate increased" 0.01
+					}
+					
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+		
+
+			
+			Name "wave6b"
+			WaitForAllSpawned "wave6a"
+		
+			TotalCount 12
+			MaxActive 9
+			SpawnCount 3
+			WaitBetweenSpawns 6
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Giant_Scout
+				Name "Giant Baby Man"
+				
+				Attributes AlwaysCrit
+				WeaponRestrictions MeleeOnly
+				Item "Ghostly Gibus"
+				Scale 1
+				Health 1025
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+		
+
+			
+			//Name "wave6c"
+			WaitForAllSpawned "wave6b"
+		
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 3
+			WaitBetweenSpawns 7
+			TotalCurrency 49
+			TFBot
+			{
+				Template T_TFBot_Giant_Scout
+				Name "Dumb Giant Baby Man"
+				
+				Item "The Wrap Assassin"
+				Attributes AlwaysCrit
+				WeaponRestrictions MeleeOnly
+				Item "Ghostly Gibus"
+				Scale 1
+				Health 2000
+			}
+		}
+				
+		WaveSpawn
+		{
+			Where spawnbot
+		
+
+			
+			//Name "wave6c"
+			WaitForAllSpawned "wave6b"
+		
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 10
+			TotalCurrency 1
+			TFBot
+			{
+				
+				Template T_TFBot_Giant_Boxing_Heavy
+
+				Name "Get Lunchbox.Best Free TF2 Snax"
+				Health 3000
+				WeaponRestrictions MeleeOnly
+				
+				ClassIcon heavy_mittens
+				
+				Attributes AlwaysCrit
+
+				Item "The Holiday Punch"
+				Scale 1
+				
+				Item "The All-Father"
+				ItemAttributes 
+				{
+					ItemName "The All-Father"
+					"set item tint rgb" 16738740
+				}
+				CharacterAttributes
+				{
+					"move speed bonus" 4
+					"cannot pick up intelligence" 1
+				}
+			}
+		}
+		
+		
+		
+		WaveSpawn
+		{
+		
+		
+			WaitForAllSpawned "wave6b"
+			Where spawnbot
+			TotalCount 20
+			MaxActive 10
+			SpawnCount 3
+			WaitBetweenSpawns 7
+			TotalCurrency 300
+			TFBot
+			{
+				Template T_TFBot_Giant_Heavyweapons
+				Name "Giant Scout"
+				ClassIcon scout_giant
+				WeaponRestrictions SecondaryOnly
+				Item "Ghostly Gibus"
+				Scale 0.8
+				Health 700
+				CharacterAttributes
+				{
+					"move speed bonus" 2
+				}
+				
+			}
+		
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 20
+			TotalCurrency 197
+			TFBot
+			{
+				Template T_TFBot_Giant_Major_League
+				Scale 1
+				Health 600
+			}
+		}
+	}
+
+	//FINISH WAVE 777
+	//START OF WAVE 7
+	Wave
+	{
+		Checkpoint Yes
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action trigger
+		}
+
+
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave7a"
+			TotalCount 10
+			MaxActive 5
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 10
+			TotalCurrency 100
+			TFBot
+			{
+				Class Soldier
+				Attributes AlwaysCrit
+				Health 1000				
+				Skill Expert
+				//Skill Easy
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave7a"
+			TotalCount 30
+			MaxActive 20
+			SpawnCount 10
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 5
+			TotalCurrency 100
+			TFBot
+			{
+				Class Soldier
+				Health 300
+				Skill Expert
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+
+			Name "wave7a"
+			TotalCount 50
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 6
+			TotalCurrency 50
+			TFBot
+			{
+				Template T_TFBot_Soldier_Rocket_Jumper
+			}
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+
+			Name "wave7a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 20
+			TotalCurrency 10
+			TFBot
+			{
+				Template T_TFBot_Soldier_Rocket_Jumper
+				Health 9001
+				//Scale 1.9
+				Scale 1
+				ClassIcon soldier_sergeant_crits
+				Attributes MiniBoss
+				Attributes UseBossHealthBar
+			}
+		}		
+		
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "wave7a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 20
+			//WaitBetweenSpawns 10
+			TotalCurrency 10
+			TFBot
+			{
+				Class Soldier
+				Attributes AlwaysCrit
+				Health 9001
+				//Item "The Team Captain"
+				Attributes MiniBoss
+				Scale 1
+
+
+
+				Name "Steel Scammer #S> 200 unusuals"
+				Item "Tyrantium Helmet"
+				Item "OSX Item"
+				Item "The All-Father"
+				Item "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
+
+				ItemAttributes 
+				{
+					ItemName "The All-Father"
+					"set item tint rgb" 3329330
+					"attach particle effect" 1
+				}
+				//he has unusual australium rocket launcher OwO
+				ItemAttributes { 
+					ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"
+					"item style override" 1
+					"damage bonus" 4
+					"attach particle effect" 702
+				}
+			}
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+
+			Name "wave7b"
+			TotalCount 1
+
+			WaitForAllSpawned "wave7a"
+			MaxActive 1
+			
+			SpawnCount 1
+			WaitBeforeStarting 20
+			TotalCurrency 10
+			TFBot
+			{
+				Template T_TFBot_Soldier_Rocket_Jumper
+				Health 9001
+				//Scale 1.9
+				Scale 1
+				ClassIcon soldier_sergeant_crits
+				Attributes MiniBoss
+				Attributes UseBossHealthBar
+				CharacterAttributes
+				{
+					"move speed bonus" 4
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Where spawnbot
+			WaitForAllSpawned "wave7a"
+			Name "wave7b"
+			TotalCount 6
+			MaxActive 5
+			SpawnCount 2
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier_Spammer
+				Attributes AlwaysCrit
+				//Health 1250
+				Scale 1
+
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			WaitForAllSpawned "wave7a"
+			//Name "wave7b"
+			TotalCount 5
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 5
+			TotalCurrency 100
+			TFBot
+			{
+				Template T_TFBot_Giant_Soldier_Extended_Concheror
+				//Health 1000
+				Scale 1
+
+
+			}
+		}
+
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 1
+			WaitForAllSpawned "wave7a"
+			MaxActive 1
+			SpawnCount 1
+			TotalCurrency 10
+			WaitBeforeStarting 20
+			TFBot
+			{
+				//Name "Sound Card General"
+				
+				Name "friendly hoovy. Please don't shoot XD"
+				Class Soldier
+				Skill Expert
+				Health 15000
+				//Scale 1.7
+				ClassIcon soldier_major_crits
+				Item "Full Metal Drill Hat"
+				Item "Rocket Jumper"
+				Scale 1
+				Attributes AlwaysCrit
+				Attributes AlwaysFireWeapon
+				//Attributes HoldFireUntilFullReload
+				Attributes MiniBoss
+				Attributes UseBossHealthBar
+				WeaponRestrictions PrimaryOnly
+				ItemAttributes
+				{
+					ItemName "Rocket Jumper"
+					"fire rate bonus" 0.8
+					"Projectile speed increased" 2
+					"projectile spread angle penalty" 5
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			TotalCount 1
+			WaitForAllSpawned "wave7a"
+			MaxActive 1
+			SpawnCount 1
+			TotalCurrency 10
+			
+			WaitBeforeStarting 15
+			TFBot
+			{
+				Template T_TFBot_Chief_Soldier_SlowCrit
+				Name "Fair And Balanced"
+				Scale 0.7
+				Health 10000
+			}
+		}
+		
+		//removed 100 crit soldiers FROM HERE
+		//RIP
+
+		WaveSpawn 
+		{
+			Name "wave1joke1"
+			TotalCount 1
+			WaitBeforeStarting 10
+			TotalCurrency 10
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 200
+				Speed 75
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}	
+
+		
+		WaveSpawn 
+		{
+			Name "wave1joke2"
+			TotalCount 1
+
+			WaitForAllDead "wave1joke1"
+			WaitBeforeStarting 10
+			TotalCurrency 10
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 200
+				Speed 75
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}	
+
+		WaveSpawn 
+		{
+			Name "wave1joke3"
+			TotalCount 1
+
+			WaitForAllDead "wave1joke2"
+			WaitBeforeStarting 10
+			TotalCurrency 10
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 300
+				Speed 75
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}	
+
+		WaveSpawn 
+		{
+			TotalCount 1
+			WaitForAllDead "wave1joke3"
+			WaitBeforeStarting 20
+			TotalCurrency 100
+			
+			FirstSpawnOutput                                                                                                                                                            
+			
+			{
+				 Target boss_spawn_relay                                            
+				 Action Trigger                         
+			}
+
+			Tank
+			{
+				Health 30000
+				Speed 75
+				Name "tankboss"
+				StartingPathTrackNode "boss_path_a1"
+
+				OnKilledOutput                                  
+				{
+					Target boss_dead_relay
+					Action Trigger                         
+				}
+				
+				OnBombDroppedOutput                             
+				{
+					Target boss_deploy_relay 
+					Action Trigger                         
+				}
+			}			
+		}	
+
+
+	}
+	// END OF WAVE 7
+}
