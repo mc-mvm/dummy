@@ -2979,8 +2979,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			CharacterAttributes
 			{
 				"move speed penalty" 0.75
-			    "airblast vulnerability multiplier" 0.25
-				"airblast vertical vulnerability multiplier" 0.5
+			    "airblast vulnerability multiplier" 0.7
 				"damage force reduction" 0.7
 				"override footstep sound set" 5
 			}
@@ -3011,8 +3010,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			{
 				"move speed penalty"	0.5
 				"damage force reduction" 0.4
-				"airblast vulnerability multiplier" 0.1
-				"airblast vertical vulnerability multiplier" 0.5
+				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
 			}
 		}
@@ -3037,8 +3035,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			{
 				"move speed penalty"	0.5
 				"damage force reduction" 0.4
-				"airblast vulnerability multiplier" 0.1
-				"airblast vertical vulnerability multiplier" 0.5
+				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
 			}
 		}
@@ -3068,9 +3065,9 @@ MaelStrom_Remilia_Addicted_Intermediate
 			{
 				"move speed penalty"	0.5
 				"damage force reduction" 0.4
-				"airblast vulnerability multiplier" 0.0
+				"airblast vulnerability multiplier" 0.1
 				"override footstep sound set" 3
-				"airblast vertical vulnerability multiplier" 0.0
+				"airblast vertical vulnerability multiplier" 0.1
 			}
 		}
 		T_TFBot_Giant_Demoman_Scatter
@@ -3102,8 +3099,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			{
 				"move speed penalty"	0.5
 				"damage force reduction" 0.5
-				"airblast vulnerability multiplier" 0.15
-				"airblast vertical vulnerability multiplier" 0.5
+				"airblast vulnerability multiplier" 0.5
 				"override footstep sound set" 4
 			}
 		}
@@ -3127,8 +3123,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			{
 				"move speed penalty"	0.5
 				"damage force reduction" 0.4
-				"airblast vulnerability multiplier" 0.2
-				"airblast vertical vulnerability multiplier" 0.5
+				"airblast vulnerability multiplier" 0.6
 				"override footstep sound set" 3
 			}
 		}
@@ -3201,8 +3196,7 @@ MaelStrom_Remilia_Addicted_Intermediate
 			CharacterAttributes
 			{
 				"damage force reduction" 0.4
-				"airblast vulnerability multiplier" 0.15
-				"airblast vertical vulnerability multiplier" 0.5
+				"airblast vulnerability multiplier" 0.5
 				"override footstep sound set" 3
 				"move speed penalty"	0.5
 			}
